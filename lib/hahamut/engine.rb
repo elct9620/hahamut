@@ -11,6 +11,10 @@ module Hahamut
       def call(env)
         Handler.new(env).process
       end
+
+      def setup(&_block)
+        yield Manager.instance
+      end
     end
   end
 end

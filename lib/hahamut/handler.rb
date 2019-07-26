@@ -18,6 +18,9 @@ module Hahamut
       return invalid_client if client.nil?
       return invalid_signature unless valid_signature?
 
+      # TODO: Convert body to message object
+      Manager.handle(body)
+
       Rack::Response.new([], 204)
     end
 
