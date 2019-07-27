@@ -21,7 +21,8 @@ module Hahamut
     def messaging=(messages)
       @attributes[:messaging] =
         messages
-        .map { |message| Message.parse(message) }
+        &.map { |message| Message.parse(message) }
+        &.compact
     end
   end
 end

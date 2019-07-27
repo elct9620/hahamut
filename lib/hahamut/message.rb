@@ -2,6 +2,9 @@
 
 require 'hahamut/message/base'
 require 'hahamut/message/text'
+require 'hahamut/message/command'
+require 'Hahamut/message/bot_start'
+require 'Hahamut/message/bot_event'
 
 module Hahamut
   # Hahamut Message
