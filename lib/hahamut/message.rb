@@ -5,8 +5,8 @@ require 'hahamut/message/text'
 require 'hahamut/message/image'
 require 'hahamut/message/sticker'
 require 'hahamut/message/command'
-require 'Hahamut/message/bot_start'
-require 'Hahamut/message/bot_event'
+require 'hahamut/message/bot_start'
+require 'hahamut/message/bot_event'
 
 module Hahamut
   # Hahamut Message
