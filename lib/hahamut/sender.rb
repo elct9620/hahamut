@@ -1,0 +1,40 @@
+# frozen_string_literal: true
+
+require 'net/http'
+
+module Hahamut
+  # Chat Message Sender
+  class Sender
+    ENDPOINT = 'https://us-central1-hahamut-8888.cloudfunctions.net/' \
+               'messagePush?access_token=%<token>s'
+
+    def initialize(token)
+      @token = token
+    end
+
+    def uri
+      @uri ||= URI(format(ENDPOINT, token: @token))
+    end
+
+    def ssl?
+      uri.scheme == 'https'
+    end
+
+    def send(message)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = ssl?
+      http.request build_request(message)
+    end
+
+    private
+
+    def build_request(message)
+      return @request if @request.present?
+
+      @request = Net::HTTP::Post.new(uri)
+      @request['Content-Type'] = 'application/json'
+      @request.body = message.to_json
+      @request
+    end
+  end
+end

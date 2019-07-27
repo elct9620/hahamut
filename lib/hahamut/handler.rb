@@ -18,7 +18,7 @@ module Hahamut
       return invalid_client if client.nil?
       return invalid_signature unless valid_signature?
 
-      Manager.handle(Event.new(body))
+      Manager.handle(client, Event.new(body))
 
       Rack::Response.new([], 204)
     end

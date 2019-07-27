@@ -10,6 +10,7 @@ require 'hahamut/attribute'
 require 'hahamut/support'
 require 'hahamut/event'
 require 'hahamut/message'
+require 'hahamut/sender'
 
 module Hahamut
   class Error < StandardError; end
