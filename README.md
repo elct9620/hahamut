@@ -65,11 +65,11 @@ Hahamut::Engine.setup do |config|
   end
 
   # Option 2
-  config.on_message ChatbotHandler
+  config.handler = ChatbotHandler
 end
 ```
 
-> If you want to use the handler object, you must implement a class method `#call`
+> If you want to use the handler object, you must implement a `#call` method
 
 ### Sending Message
 
