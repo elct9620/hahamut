@@ -14,7 +14,7 @@ module Hahamut
       module ClassMethods
         def attribute(name, type)
           name = name.to_sym
-          klass = Attribute.const_get(type.to_s.classify)
+          klass = Attribute.const_get(type.to_s.capitalize)
 
           define_method name do
             @attributes[name]&.value

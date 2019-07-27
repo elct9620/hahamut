@@ -3,7 +3,7 @@
 module Hahamut
   module Message
     # Command Message
-    class Text < Base
+    class Command < Base
       class << self
         def match?(message)
           message['message']&.key?('bot_command')
@@ -12,6 +12,11 @@ module Hahamut
 
       attribute :event_id, :string
       attribute :bot_command, :string
+
+      # Unsupport
+      def type
+        nil
+      end
     end
   end
 end

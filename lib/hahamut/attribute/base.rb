@@ -13,6 +13,14 @@ module Hahamut
       def value
         @value ||= before_cast
       end
+
+      def as_json
+        value
+      end
+
+      def to_json(_obj = nil)
+        as_json.to_json
+      end
     end
   end
 end

@@ -12,11 +12,24 @@ module Hahamut
 
       include Support::Attributes
 
-      attribute :sender_id, :string
+      attr_reader :sender_id
 
-      def initialize(attributes)
-        assign_attributes(attributes['message'])
-        self.sender_id = attributes['sender_id']
+      # TODO: Improve sender / recipient setup
+      def initialize(attributes, sender_id = nil)
+        assign_attributes(attributes)
+        @sender_id = sender_id
+      end
+
+      def type
+        raise NotImplementedError
+      end
+
+      def as_json(_obj = nil)
+        @attributes.dup.merge(type: type)
+      end
+
+      def to_json(_obj = nil)
+        as_json.to_json
       end
     end
   end

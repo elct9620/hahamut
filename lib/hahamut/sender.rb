@@ -20,20 +20,23 @@ module Hahamut
       uri.scheme == 'https'
     end
 
-    def send(message)
+    def send(recipient, message)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = ssl?
-      http.request build_request(message)
+      http.request build_request(recipient, message)
     end
 
     private
 
-    def build_request(message)
+    def build_request(recipient, message)
       return @request if @request.present?
 
       @request = Net::HTTP::Post.new(uri)
       @request['Content-Type'] = 'application/json'
-      @request.body = message.to_json
+      @request.body = {
+        recipient: { id: recipient },
+        message: message
+      }.to_json
       @request
     end
   end

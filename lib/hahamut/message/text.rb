@@ -11,6 +11,10 @@ module Hahamut
       end
 
       attribute :text, :string
+
+      def type
+        :text
+      end
     end
   end
 end

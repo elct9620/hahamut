@@ -14,8 +14,8 @@ module Hahamut
       Manager.register(self)
     end
 
-    def send(message)
-      @sender.send(message)
+    def send_to(recipient, message)
+      @sender.send(recipient, message)
     end
   end
 end
