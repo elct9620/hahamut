@@ -29,8 +29,6 @@ module Hahamut
     private
 
     def build_request(recipient, message)
-      return @request if @request.present?
-
       @request = Net::HTTP::Post.new(uri)
       @request['Content-Type'] = 'application/json'
       @request.body = {
