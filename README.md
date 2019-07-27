@@ -1,8 +1,6 @@
 # Hahamut
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hahamut`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The [Bahamut Forum](https://gamer.com.tw)'s Chatbot ruby client implements
 
 ## Installation
 
@@ -22,7 +20,87 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+If you are using Rack, just run it
+
+```ruby
+run Hahamut::Engine
+```
+
+If you are using Rails, mount it in your `config/routes.rb`
+
+```ruby
+mount Hahamut::Engine => '/hahamut'
+```
+
+### Configure
+
+This gem is support multiple chatbot, we can use `#setup` to configure it.
+
+```ruby
+# config/initializers/hahamut.rb
+
+Hahamut::Engine.setup do |config|
+
+  # Strong recommendation to put in credentials or environment variables
+  config.register bot_id: 'YOUR_BOT_ID',
+                  token: 'YOUR_BOT_TOKEN',
+                  secret: 'YOUR_BOT_SECRET'
+end
+```
+
+### Handling Event
+
+When you setup Hahamut, you can set handler
+
+```ruby
+# config/initializers/hahamut.rb
+
+Hahamut::Engine.setup do |config|
+
+  # Your bot register
+
+  # Option 1
+  config.on_message do |bot, event|
+    # Implement your bot behavior
+  end
+
+  # Option 2
+  config.on_message ChatbotHandler
+end
+```
+
+> If you want to use the handler object, you must implement a class method `#call`
+
+### Sending Message
+
+Current support message types
+
+* Text
+* Image
+* Sticker
+* BotStart
+* BotEvent
+
+When you receive a message, you will get the bot instance and event.
+To send a message, you have to use bot instance to send a message object.
+
+```ruby
+message = Hahamut::Message::Text.new(text: 'Hello World')
+bot.send_to 'RECEIPIENT_ID', message
+```
+
+> BotStart can accept `init` attribute with BotEvent, it can help you write less JSON for it.
+> This feature will be improved in the future to make it easier to use.
+
+### Upload Image
+
+Same as send a message, we need a bot instance.
+The result is a `Hahamut::Message::Image` object and you can send to the user directly.
+
+```ruby
+image = bot.upload('IMAGE_PATH')
+bot.send_to 'RECEIPIENT_ID', image
+```
 
 ## Development
 
@@ -32,8 +110,8 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hahamut. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/elct9620/hahamut. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Code of Conduct
 
-Everyone interacting in the Hahamut project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/hahamut/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Hahamut project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/elct9620/hahamut/blob/master/CODE_OF_CONDUCT.md).
