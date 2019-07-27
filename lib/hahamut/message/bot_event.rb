@@ -4,6 +4,7 @@ module Hahamut
   module Message
     # Bot Start Message
     class BotEvent < Base
+      attribute :event_id, :string
       # TODO: Implement image attribute
       attribute :image, :string
       # TODO: Implement specify attribute
