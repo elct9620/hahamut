@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/spec/'
+  add_group 'Message', 'lib/hahamut/message'
+  add_group 'Attribute', 'lib/hahamut/attribute'
+end
+
 require 'hahamut'
 
 RSpec.configure do |config|
