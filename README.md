@@ -1,5 +1,7 @@
 # Hahamut
 
+[![Build Status](https://travis-ci.com/elct9620/hahamut.svg?branch=master)](https://travis-ci.com/elct9620/hahamut) [![Coverage Status](https://coveralls.io/repos/github/elct9620/hahamut/badge.svg?branch=master)](https://coveralls.io/github/elct9620/hahamut?branch=master)
+
 The [Bahamut Forum](https://gamer.com.tw)'s Chatbot ruby client implements
 
 ## Installation
