@@ -2,6 +2,17 @@
 
 require 'bundler/setup'
 require 'simplecov'
+
+if ENV['TRAVIS']
+  require 'coveralls'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+    [
+      SimpleCov::Formatter::HTMLFormatter,
+      Coveralls::SimpleCov::Formatter
+    ]
+  )
+end
+
 SimpleCov.start do
   add_filter '/spec/'
   add_group 'Message', 'lib/hahamut/message'
