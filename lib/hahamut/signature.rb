@@ -8,12 +8,12 @@ module Hahamut
       @body = body
     end
 
-    def match?(verify_signature)
-      signature == verify_signature
+    def match?(signature)
+      signature == "sha1=#{sign}"
     end
 
-    def signature
-      "sha1=#{OpenSSL::HMAC.hexdigest('SHA1', @secret, @body)}"
+    def sign
+      @sign ||= OpenSSL::HMAC.hexdigest('SHA1', @secret, @body)
     end
   end
 end
