@@ -25,7 +25,9 @@ module Hahamut
       end
 
       def as_json(_obj = nil)
-        @attributes.dup.merge(type: type)
+        attrs = @attributes.dup
+        attrs = attrs.merge(type: type) if type
+        attrs
       end
 
       def to_json(_obj = nil)

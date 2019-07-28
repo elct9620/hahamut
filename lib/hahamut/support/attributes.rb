@@ -30,6 +30,8 @@ module Hahamut
       attr_reader :attributes
 
       def assign_attributes(attributes)
+        @attributes ||= {}
+
         attributes.each do |attr, value|
           send("#{attr}=", value)
         end
