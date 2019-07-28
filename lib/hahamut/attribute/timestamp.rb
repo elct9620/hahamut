@@ -5,7 +5,7 @@ module Hahamut
     # Timestamp Attribute
     class Timestamp < Base
       def value
-        @value ||= Time.at(before_cast.to_i / 1000)
+        @value ||= Time.at(before_cast.to_f / 1000)
       end
     end
   end
