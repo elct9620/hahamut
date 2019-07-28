@@ -16,8 +16,8 @@ module Hahamut
         instance.get(id)
       end
 
-      def handle(client, message)
-        instance.handler&.call(client, message)
+      def handle(client, event)
+        instance.handler&.call(client, event)
       end
     end
 
