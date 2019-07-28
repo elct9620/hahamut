@@ -86,7 +86,7 @@ To send a message, you have to use bot instance to send a message object.
 
 ```ruby
 message = Hahamut::Message::Text.new(text: 'Hello World')
-bot.send_to 'RECEIPIENT_ID', message
+bot.send_to 'RECIPIENT_ID', message
 ```
 
 > BotStart can accept `init` attribute with BotEvent, it can help you write less JSON for it.
@@ -99,7 +99,7 @@ The result is a `Hahamut::Message::Image` object and you can send to the user di
 
 ```ruby
 image = bot.upload('IMAGE_PATH')
-bot.send_to 'RECEIPIENT_ID', image
+bot.send_to 'RECIPIENT_ID', image
 ```
 
 ## Development
