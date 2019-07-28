@@ -44,6 +44,7 @@ module Hahamut
     end
 
     def create_image(res)
+      pp res.is_a?(Net::HTTPSuccess)
       return false unless res.is_a?(Net::HTTPSuccess)
 
       Message::Image.new(JSON.parse(res.body))
